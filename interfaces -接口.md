@@ -10,3 +10,67 @@
 协议实现：通过接口实现协议，可以让程序与其他程序或系统进行通信，从而实现更高层次的互操作性和可移植性。
 
 ---
+
+以下是添加中文注释的示例代码：
+
+```go
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+// Geometry 接口定义了几何图形的面积和周长的方法
+type Geometry interface {
+	area() float64    // 求面积
+	perim() float64   // 求周长
+}
+
+// Rect 结构体定义了矩形的宽和高
+type Rect struct {
+	width, height float64   // 宽和高
+}
+
+// Circle 结构体定义了圆的半径
+type Circle struct {
+	radius float64   // 半径
+}
+
+// 实现 Rect 结构体的 area() 方法，用于求矩形的面积
+func (r Rect) area() float64 {
+	return r.height * r.width   // 面积公式：长 * 宽
+}
+
+// 实现 Rect 结构体的 perim() 方法，用于求矩形的周长
+func (r Rect) perim() float64 {
+	return 2*r.width + 2*r.height   // 周长公式：2 * (长 + 宽)
+}
+
+// 实现 Circle 结构体的 area() 方法，用于求圆的面积
+func (c Circle) area() float64 {
+	return math.Pi * c.radius * c.radius   // 面积公式：π * 半径²
+}
+
+// 实现 Circle 结构体的 perim() 方法，用于求圆的周长
+func (c Circle) perim() float64 {
+	return 2 * math.Pi * c.radius   // 周长公式：2 * π * 半径
+}
+
+// measure 函数用于计算几何图形的面积和周长
+func measure(g Geometry) {
+	fmt.Println(g)   // 输出几何图形的类型
+	fmt.Println(g.area())   // 输出几何图形的面积
+	fmt.Println(g.perim())   // 输出几何图形的周长
+}
+
+func main() {
+	r := &Rect{3, 4}   // 创建一个矩形实例
+	c := &Circle{5}   // 创建一个圆实例
+
+	measure(r)   // 计算矩形的面积和周长
+	measure(c)   // 计算圆的面积和周长
+}
+```
+
+
